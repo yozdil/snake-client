@@ -3,6 +3,8 @@
  * Specifically, so that we can handle user input via stdin
  */
 
+const { direction } = require("./constants");
+
 // Stores the active TCP connection object.
 let connection;
 
@@ -25,16 +27,16 @@ const handleUserInput = (key) => {
   if (key === "\u0003") {
     process.exit();
   } else if (key === "w") {
-    connection.write("Move: up");
+    connection.write(direction.up);
   } else if (key === "a") {
-    connection.write("Move: left");
+    connection.write(direction.left);
   } else if (key === "s") {
-    connection.write("Move: down");
+    connection.write(direction.down);
   } else if (key === "d") {
-    connection.write("Move: right");
+    connection.write(direction.right);
     // m sends a special message sending a string like "Say: _____" to the server
   } else if (key === "m") {
-    connection.write("Say: Gonna eat dat apple!");
+    connection.write(direction.message);
   }
 };
 
