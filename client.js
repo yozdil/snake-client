@@ -21,6 +21,7 @@ const connect = function() {
   });
 
   // Sending server commands via setInterval.
+  
   // conn.on("connect", () => {
   //   conn.write("Move: up");
   //   setInterval(() => {
