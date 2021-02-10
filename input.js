@@ -3,7 +3,11 @@
  * Specifically, so that we can handle user input via stdin
  */
 
-const setupInput = function() {
+// Stores the active TCP connection object.
+let connection;
+
+const setupInput = function(conn) {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
@@ -13,6 +17,28 @@ const setupInput = function() {
   stdin.on("data", (key) => {
     handleUserInput(key);
   });
+
+  stdin.on("data", (key) => {
+    if (key === "w") {
+      connection.write("Move: up");
+    }
+  });
+  stdin.on("data", (key) => {
+    if (key === "a") {
+      connection.write("Move: left");
+    }
+  });
+  stdin.on("data", (key) => {
+    if (key === "s") {
+      connection.write("Move: down");
+    }
+  });
+  stdin.on("data", (key) => {
+    if (key === "d") {
+      connection.write("Move: right");
+    }
+  });
+
   return stdin;
 };
 
