@@ -13,32 +13,8 @@ const setupInput = function(conn) {
   stdin.setEncoding("utf8");
   stdin.resume();
   // handleUserInput is the data callback as we want to exit the game using
-  // CTRL+C.
-  stdin.on("data", (key) => {
-    handleUserInput(key);
-  });
-
-  stdin.on("data", (key) => {
-    if (key === "w") {
-      connection.write("Move: up");
-    }
-  });
-  stdin.on("data", (key) => {
-    if (key === "a") {
-      connection.write("Move: left");
-    }
-  });
-  stdin.on("data", (key) => {
-    if (key === "s") {
-      connection.write("Move: down");
-    }
-  });
-  stdin.on("data", (key) => {
-    if (key === "d") {
-      connection.write("Move: right");
-    }
-  });
-
+  // CTRL+C. And moves
+  stdin.on("data", handleUserInput);
   return stdin;
 };
 
@@ -48,6 +24,14 @@ const handleUserInput = (key) => {
   // \u0003 maps to ctrl+c input
   if (key === "\u0003") {
     process.exit();
+  } else if (key === "w") {
+    connection.write("Move: up");
+  } else if (key === "a") {
+    connection.write("Move: left");
+  } else if (key === "s") {
+    connection.write("Move: down");
+  } else if (key === "d") {
+    connection.write("Move: right");
   }
 };
 
