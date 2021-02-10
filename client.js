@@ -16,8 +16,7 @@ const connect = function() {
     // With a successful connection send server a player name of max three
     // characters.
     conn.write("Name: YAM");
-    // // Send server the move up command, as soon as we are connected.
-    // conn.write("Move: up");
+
   });
 
   // Sending server commands via setInterval.

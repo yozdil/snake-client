@@ -32,6 +32,9 @@ const handleUserInput = (key) => {
     connection.write("Move: down");
   } else if (key === "d") {
     connection.write("Move: right");
+    // m sends a special message sending a string like "Say: _____" to the server
+  } else if (key === "m") {
+    connection.write("Say: Gonna eat dat apple!");
   }
 };
 
